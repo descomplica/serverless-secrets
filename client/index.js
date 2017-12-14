@@ -23,7 +23,7 @@ function init (config) {
 function load (options) {
   init()
   const mergedOptions = Object.assign({}, secrets.options, options)
-  const environmentSecrets = Object.assign({}, secrets.environments.$global, secrets.environments[process.env._HANDLER.split('.')[1]])
+  const environmentSecrets = Object.assign({}, secrets.environments.$global, secrets.environments[process.env._HANDLER])
   const parameterNames = _.uniq(_.values(environmentSecrets))
   const provider = getStorageProvider(mergedOptions)
   return provider.getSecret(parameterNames).then(data => {
